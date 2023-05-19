@@ -15,7 +15,7 @@ import urllib.request
 # custom_resnet50_model = load_model('model.h5')
 
 
-@st.cache_resource
+# @st.cache_resource
 def load_models():
     if not os.path.isfile('model.h5'):
         urllib.request.urlretrieve('https://github.com/zhiliny2/mltest/raw/master/bmi_model_finetuned3.h5', 'model.h5')
