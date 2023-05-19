@@ -2,3 +2,5 @@ numpy
 streamlit
 keras
 opencv-python-headless
+tensorflow
+pillow
