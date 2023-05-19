@@ -5,21 +5,22 @@ from keras.models import load_model
 from PIL import Image
 import os
 import subprocess
+import urllib.request
 
 # Load the trained model
-# custom_resnet50_model = load_model("https://github.com/zhiliny2/mltest/blob/ff28ce47c0e2b156c408947816fe4ea6001d7b3a/bmi_model_finetuned3.h5")
+# custom_resnet50_model = load_model("https://github.com/zhiliny2/mltest/raw/master/bmi_model_finetuned3.h5")
 
 # if not os.path.isfile('model.h5'):
-#     subprocess.run(['curl --output model.h5 "https://github.com/zhiliny2/mltest/blob/ff28ce47c0e2b156c408947816fe4ea6001d7b3a/bmi_model_finetuned3.h5"'], shell=True)
+#     subprocess.run(['curl --output model.h5 "https://github.com/zhiliny2/mltest/raw/master/bmi_model_finetuned3.h5"'], shell=True)
 # custom_resnet50_model = load_model('model.h5')
 
-import urllib.request
+
 @st.experimental_singleton
 def load_model():
     if not os.path.isfile('model.h5'):
-        urllib.request.urlretrieve('https://github.com/osunrinde/NGM-APP/raw/main/Breccia_Rock_Classifier.h5', 'model.h5')
+        urllib.request.urlretrieve('https://github.com/zhiliny2/mltest/raw/master/bmi_model_finetuned3.h5', 'model.h5')
     return tensorflow.keras.models.load_model('model.h5')
-
+custom_resnet50_model = load_model()
 # Load the Haar Cascade classifier for face detection
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_alt.xml')
 
