@@ -24,9 +24,7 @@ def predict_bmi(image):
     # Preprocess the image
     image = preprocess_image(image)
 
-    # Expand dimensions to match 
-    
-    input shape
+    # Expand dimensions to match input shape
     image = np.expand_dims(image, axis=0)
 
     # Perform the prediction
