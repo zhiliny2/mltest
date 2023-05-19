@@ -4,23 +4,18 @@ import streamlit as st
 from keras.models import load_model
 from PIL import Image
 import os
-import subprocess
 import urllib.request
 
-# Load the trained model
-# custom_resnet50_model = load_model("https://github.com/zhiliny2/mltest/raw/master/bmi_model_finetuned3.h5")
-
-# if not os.path.isfile('model.h5'):
-#     subprocess.run(['curl --output model.h5 "https://github.com/zhiliny2/mltest/raw/master/bmi_model_finetuned3.h5"'], shell=True)
-# custom_resnet50_model = load_model('model.h5')
-
-
-# @st.cache_resource
-def load_models():
+# Function to load the model
+@st.cache(allow_output_mutation=True)
+def load_model():
     if not os.path.isfile('model.h5'):
         urllib.request.urlretrieve('https://github.com/zhiliny2/mltest/raw/master/bmi_model_finetuned3.h5', 'model.h5')
     return load_model('model.h5')
-custom_resnet50_model = load_models()
+
+# Load the model
+custom_resnet50_model = load_model()
+
 # Load the Haar Cascade classifier for face detection
 # face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_alt.xml')
 
@@ -29,7 +24,7 @@ def preprocess_image(image):
     image = image / 255.0
     return image
 
-def predict_bmi(image):
+def predict_bmi(image, model):
     # Preprocess the image
     image = preprocess_image(image)
 
@@ -37,7 +32,7 @@ def predict_bmi(image):
     image = np.expand_dims(image, axis=0)
 
     # Perform the prediction
-    bmi_prediction = custom_resnet50_model.predict(image)[0][0]
+    bmi_prediction = model.predict(image)[0][0]
     return bmi_prediction
 
 # Create a Streamlit app
@@ -71,7 +66,7 @@ def main():
             face_region = image[y:y + h, x:x + w]
 
             # Make a BMI prediction for the face region
-            bmi_prediction = predict_bmi(face_region)
+            bmi_prediction = predict_bmi(face_region, custom_resnet50_model)
 
             # Add the BMI prediction text to the image
             text = "BMI: {:.2f}".format(bmi_prediction)
