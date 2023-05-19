@@ -12,17 +12,32 @@ import subprocess
 # @st.cache(allow_output_mutation=True)
 # def load_custom_model():
 #     if not os.path.isfile('model.h5'):
-#         urllib.request.urlretrieve('https://github.com/zhiliny2/mltest/raw/master/bmi_model_finetuned3.h5', 'model.h5')
+#         urllib.request.urlretrieve('https:///zhiliny2/mltest/raw/master/bmi_model_finetuned3.h5', 'model.h5')
 #     return tf.keras.models.load_model('model.h5')
 
-if not os.path.isfile('model.h5'):
-    subprocess.run(['curl --output model.h5 "https://github.com/zhiliny2/mltest/raw/master/bmi_model_finetuned3.h5"'], shell=True)
+# if not os.path.isfile('model.h5'):
+#     subprocess.run(['curl --output model.h5 "https://github.com/zhiliny2/mltest/raw/master/bmi_model_finetuned3.h5"'], shell=True)
+
+# Define the URL of the model file
+model_url = 'https://github.com/zhiliny2/mltest/raw/master/bmi_model_finetuned3.h5'
+model_path = 'model.h5'
+
+# Download the model file
+if not os.path.isfile(model_path):
+    response = requests.get(model_url)
+    with open(model_path, 'wb') as f:
+        f.write(response.content)
 
 # Load the model
-custom_resnet50_model = tf.keras.models.load_model('model.h5', compile=False)
+custom_resnet50_model = tf.keras.models.load_model(model_path, compile=False)
+
+
+
+# # Load the model
+# custom_resnet50_model = tf.keras.models.load_model('model.h5', compile=False)
 
 # Load the Haar Cascade classifier for face detection
-# face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_alt.xml')
+face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_alt.xml')
 
 def preprocess_image(image):
     image = cv2.resize(image, (224, 224))
