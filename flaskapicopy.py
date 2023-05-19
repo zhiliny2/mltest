@@ -19,7 +19,7 @@ import urllib.request
 def load_models():
     if not os.path.isfile('model.h5'):
         urllib.request.urlretrieve('https://github.com/zhiliny2/mltest/raw/master/bmi_model_finetuned3.h5', 'model.h5')
-    return load_model('model.h5')
+    return keras.models.load_model('model.h5')
 custom_resnet50_model = load_models()
 # Load the Haar Cascade classifier for face detection
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_alt.xml')
