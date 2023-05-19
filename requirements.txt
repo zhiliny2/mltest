@@ -2,6 +2,5 @@ numpy
 streamlit
 keras
 os
-libgl1-mesa-glx
 opencv-python
 opencv-python-headless
