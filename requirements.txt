@@ -4,3 +4,4 @@ keras
 opencv-python-headless
 tensorflow
 pillow
+requests
