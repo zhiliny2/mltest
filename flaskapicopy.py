@@ -5,7 +5,7 @@ from keras.models import load_model
 from PIL import Image
 
 # Load the trained model
-custom_resnet50_model = load_model("bmi_model_finetuned3.h5")
+custom_resnet50_model = load_model("https://github.com/zhiliny2/mltest/blob/ff28ce47c0e2b156c408947816fe4ea6001d7b3a/bmi_model_finetuned3.h5")
 
 # Load the Haar Cascade classifier for face detection
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_alt.xml')
