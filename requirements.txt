@@ -2,5 +2,4 @@ numpy
 streamlit
 keras
 os
-opencv-python
 opencv-python-headless
