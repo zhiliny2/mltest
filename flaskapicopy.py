@@ -1,8 +1,9 @@
 import cv2
 import numpy as np
 import streamlit as st
-from keras.models import load_model as keras_load_model
+# from keras.models import load_model as keras_load_model
 from PIL import Image
+import tensorflow as tf
 import os
 import urllib.request
 
@@ -11,7 +12,7 @@ import urllib.request
 def load_custom_model():
     if not os.path.isfile('model.h5'):
         urllib.request.urlretrieve('https://github.com/zhiliny2/mltest/raw/master/bmi_model_finetuned3.h5', 'model.h5')
-    return keras_load_model('model.h5')
+    return tf.keras.models.load_model('model.h5')
 
 # Load the model
 custom_resnet50_model = load_custom_model()
