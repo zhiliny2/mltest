@@ -1,20 +1,20 @@
 import cv2
 import numpy as np
 import streamlit as st
-from keras.models import load_model
+from keras.models import load_model as keras_load_model
 from PIL import Image
 import os
 import urllib.request
 
 # Function to load the model
 @st.cache(allow_output_mutation=True)
-def load_model():
+def load_custom_model():
     if not os.path.isfile('model.h5'):
         urllib.request.urlretrieve('https://github.com/zhiliny2/mltest/raw/master/bmi_model_finetuned3.h5', 'model.h5')
-    return load_model('model.h5')
+    return keras_load_model('model.h5')
 
 # Load the model
-custom_resnet50_model = load_model()
+custom_resnet50_model = load_custom_model()
 
 # Load the Haar Cascade classifier for face detection
 # face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_alt.xml')
