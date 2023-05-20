@@ -10,7 +10,7 @@ import requests
 import subprocess
 
 # Function to load the model
-@st.cache(allow_output_mutation=True)
+# @st.cache(allow_output_mutation=True)
 # def load_custom_model():
 #     if not os.path.isfile('model.h5'):
 #         urllib.request.urlretrieve('https:///zhiliny2/mltest/raw/master/bmi_model_finetuned3.h5', 'model.h5')
