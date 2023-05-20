@@ -7,7 +7,6 @@ import os
 import urllib.request
 import requests
 import subprocess
-import matplotlib.pyplot as plt
 
 # # Function to load the model
 model_url = 'https://github.com/zhiliny2/mltest/raw/master/bmi_model_finetuned3.h5'
